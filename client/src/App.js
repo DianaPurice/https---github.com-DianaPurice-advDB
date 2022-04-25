@@ -1,5 +1,6 @@
 import React from "react";
 import { Container } from "@material-ui/core";
+
 import Navbar from "./components/Navbar/navbar";
 import SearchBar from "./components/SearchBar/searchBar";
 import Home from "./components/Home/home";
@@ -14,6 +15,7 @@ const App = () => {
     <Container className={classes.container}>
       <Navbar />
       <SearchBar />
+      <Home />
     </Container>
   );
 };

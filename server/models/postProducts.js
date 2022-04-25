@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const productShema = mongoose.Schema({
-  tile: String,
+  title: String,
   category: String,
   description: String,
   seller: String,
@@ -9,6 +9,7 @@ const productShema = mongoose.Schema({
   selectedFile: String,
   qtyAvailable: Number,
   qty: Number,
+  price: Number,
   addedAt: {
     type: Date,
     default: new Date(),
