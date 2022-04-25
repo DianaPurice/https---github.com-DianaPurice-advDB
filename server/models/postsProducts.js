@@ -14,3 +14,7 @@ const productShema = mongoose.Schema({
     default: new Date(),
   },
 });
+
+const PostProduct = mongoose.model("PostProduct", productShema);
+
+export default PostProduct;
