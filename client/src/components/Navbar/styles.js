@@ -6,6 +6,7 @@ export default makeStyles((theme) => ({
     flexDirection: "row",
     alignItems: "center",
     background: "black",
+    justifyContent: "space-between",
     padding: 0,
     margin: 0,
     width: "100vw",
@@ -18,18 +19,52 @@ export default makeStyles((theme) => ({
   brand: {
     padding: "5px",
     fontSize: "40px",
+    color: "white",
+    textDecoration: "none",
   },
   bImg: {
     transform: "rotate(90deg)",
     padding: "5px",
     height: 40,
   },
-  profile: {
-    position: "absolute",
-    display: "flex",
-    right: "20px",
-    marginRight: "2px",
+  login: {
+    marginRight: 10,
     background: "white",
+    borderRadius: 5,
   },
-  temporray: {},
+  toolbar: {
+    position: "relative",
+    marginRight: 10,
+    flexDirection: "row",
+    display: "flex",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    width: 200,
+    padding: 0,
+    justifySelf: "flex-end",
+  },
+  profile: {
+    display: "flex",
+    justifyContent: "space-between",
+    width: "200px",
+    alignItems: "center",
+  },
+  purple: {
+    width: 25,
+    height: 25,
+  },
+  userName: {
+    fontSize: "medium",
+  },
+  logout: {
+    color: "green",
+    marginRight: 10,
+    background: "white",
+    borderRadius: 5,
+    "&:hover": {
+      background: "transparent",
+      color: "red",
+      border: "1px solid red",
+    },
+  },
 }));

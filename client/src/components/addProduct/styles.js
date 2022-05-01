@@ -14,4 +14,8 @@ export default makeStyles((theme) => ({
     marginTop: 5,
     marginBottom: 5,
   },
+  inputLabel: {
+    fontSize: 10,
+    fontWeight: "bold",
+  },
 }));

@@ -1,6 +1,11 @@
+
 html {
     font-size: 8px;
 }
 body {
-    margin:0;
+    margin:0 !important;
+}
+.inputLabel {
+    font-size: 10px !important;
+    font-weight: bold !important;
 }

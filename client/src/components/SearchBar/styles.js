@@ -29,7 +29,7 @@ export default makeStyles((theme) => ({
     display: "flex",
     background: "transparent",
     padding: 0,
-    width: 25,
+    minWidth: 25,
     height: 20,
     transform: "rotate(90deg)",
   },
@@ -45,5 +45,9 @@ export default makeStyles((theme) => ({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  a: {
+    textDecoration: "none",
+    color: "black",
   },
 }));

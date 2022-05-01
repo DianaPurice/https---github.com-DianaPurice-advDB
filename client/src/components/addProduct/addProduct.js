@@ -1,24 +1,70 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import FileBase from "react-file-base64";
-
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import useStyles from "./styles";
+import { createPost, updatePost } from "../../actions/posts";
 
-const AddProductForm = () => {
+const AddProductForm = ({ currentId, setCurrentId }) => {
+  const dispatch = useDispatch();
   const classes = useStyles();
-  const [productData, setProductData] = useState({
+  const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("profile"));
+  const [postData, setPostData] = useState({
+    seller: "",
     title: "",
     category: "",
     description: "",
     tags: "",
     selectedFile: "",
-    qtyAvailable: "",
+    qty: "",
     price: "",
   });
+  const post = useSelector((state) =>
+    currentId
+      ? state.posts.posts.find((message) => message._id === currentId)
+      : null
+  );
 
-  const handleSubmit = () => {};
-  const clear = () => {};
+  useEffect(() => {
+    setCurrentId(null);
+    if (post) setPostData(post);
+  }, [post]);
 
+  const clear = () => {
+    setPostData({
+      seller: "",
+      title: "",
+      category: "",
+      description: "",
+      tags: "",
+      selectedFile: "",
+      qty: "",
+      price: "",
+    });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (currentId) {
+      dispatch(
+        updatePost(currentId, { ...postData, name: user?.result?.seller })
+      );
+    } else {
+      dispatch(createPost({ ...postData, name: user?.result?.name }, navigate));
+    }
+    clear();
+  };
+  if (!user?.result?.name) {
+    return (
+      <Paper className={classes.paper}>
+        <Typography variant="h6" align="center">
+          Please Sign In to create your own memory and like other memories
+        </Typography>
+      </Paper>
+    );
+  }
   return (
     <Paper className={classes.paper} elevation={6}>
       <form
@@ -35,70 +81,83 @@ const AddProductForm = () => {
           varient="outlined"
           label="Seller"
           fullWidth
-          value={productData.seller}
-          onChange={(e) =>
-            setProductData({ ...productData, seller: e.target.value })
-          }
+          value={postData.seller}
+          onChange={(e) => setPostData({ ...postData, seller: e.target.value })}
+          InputLabelProps={{
+            className: "inputLabel",
+          }}
         />
         <TextField
           name="title"
           varient="outlined"
           label="Title"
           fullWidth
-          value={productData.title}
-          onChange={(e) =>
-            setProductData({ ...productData, title: e.target.value })
-          }
+          value={postData.title}
+          onChange={(e) => setPostData({ ...postData, title: e.target.value })}
+          InputLabelProps={{
+            className: "inputLabel",
+          }}
         />
         <TextField
           name="category"
           varient="outlined"
           label="Category"
           fullWidth
-          value={productData.category}
+          value={postData.category}
           onChange={(e) =>
-            setProductData({ ...productData, category: e.target.value })
+            setPostData({ ...postData, category: e.target.value })
           }
+          InputLabelProps={{
+            className: "inputLabel",
+          }}
         />
         <TextField
           name="description"
           varient="outlined"
           label="Description"
           fullWidth
-          value={productData.description}
+          value={postData.description}
           onChange={(e) =>
-            setProductData({ ...productData, description: e.target.value })
+            setPostData({ ...postData, description: e.target.value })
           }
+          InputLabelProps={{
+            className: "inputLabel",
+          }}
         />
         <TextField
           name="tags"
           varient="outlined"
           label="Tags"
           fullWidth
-          value={productData.tags}
+          value={postData.tags}
           onChange={(e) =>
-            setProductData({ ...productData, tags: e.target.value })
+            setPostData({ ...postData, tags: e.target.value.split(",") })
           }
+          InputLabelProps={{
+            className: "inputLabel",
+          }}
         />
         <TextField
-          name="qtyAvailable"
+          name="qty"
           varient="outlined"
-          label="QtyAvailable"
+          label="Quantity"
           fullWidth
-          value={productData.qtyAvailable}
-          onChange={(e) =>
-            setProductData({ ...productData, qtyAvailable: e.target.value })
-          }
+          value={postData.qty}
+          onChange={(e) => setPostData({ ...postData, qty: e.target.value })}
+          InputLabelProps={{
+            className: "inputLabel",
+          }}
         />
         <TextField
           name="price"
           varient="outlined"
           label="Price"
           fullWidth
-          value={productData.price}
-          onChange={(e) =>
-            setProductData({ ...productData, price: e.target.value })
-          }
+          value={postData.price}
+          onChange={(e) => setPostData({ ...postData, price: e.target.value })}
+          InputLabelProps={{
+            className: "inputLabel",
+          }}
         />
         <div className={classes.fileInput}>
           <FileBase
@@ -106,7 +165,7 @@ const AddProductForm = () => {
             type="file"
             multiple={false}
             onDone={({ base64 }) =>
-              setProductData({ ...postMessage, selectedFile: base64 })
+              setPostData({ ...postData, selectedFile: base64 })
             }
           />
         </div>

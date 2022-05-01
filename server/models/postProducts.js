@@ -1,21 +1,25 @@
 import mongoose from "mongoose";
 
-const productShema = mongoose.Schema({
-  title: String,
-  category: String,
+const postSchema = mongoose.Schema({
+  title: { type: String, requires: true },
+  category: { type: String, requires: true },
+  creator: String,
   description: String,
-  seller: String,
+  seller: { type: String, requires: true },
   tags: [String],
-  selectedFile: String,
-  qtyAvailable: Number,
-  qty: Number,
-  price: Number,
+  selectedFile: { type: String, requires: true },
+  qty: { type: String, requires: true },
+  price: { type: String, requires: true },
   addedAt: {
     type: Date,
     default: new Date(),
   },
+  likes: {
+    type: [String],
+    default: [],
+  },
 });
 
-const PostProduct = mongoose.model("PostProduct", productShema);
+const PostProduct = mongoose.model("PostProduct", postSchema);
 
 export default PostProduct;
