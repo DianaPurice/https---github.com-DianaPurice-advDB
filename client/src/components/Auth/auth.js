@@ -6,6 +6,9 @@ import {
   Grid,
   Typography,
   Container,
+  Select,
+  MenuItem,
+  InputLabel,
 } from "@material-ui/core";
 import { GoogleLogin } from "react-google-login";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
@@ -17,6 +20,7 @@ import Icon from "./icon";
 import { signin, signup } from "../../actions/auth";
 
 const initialState = {
+  accountType: "",
   firstName: "",
   lastName: "",
   email: "",
@@ -35,6 +39,7 @@ const Auth = () => {
   // dev defined functions
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(formData);
     if (isSignup) {
       dispatch(signup(formData, navigate));
     } else {
@@ -79,20 +84,40 @@ const Auth = () => {
           <Grid container spacing={2}>
             {isSignup && (
               <>
-                <Input
-                  name="firstName"
-                  label="First Name"
-                  handleChange={handleChange}
-                  autoFocus
-                  half
-                />
+                <div className={classes.tnContainer}>
+                  <div className={classes.typesContainer}>
+                    <InputLabel id="types" className={classes.label}>
+                      Account type:
+                    </InputLabel>
+                    <Select
+                      labelId="types"
+                      id="accountTypes"
+                      name="accountType"
+                      value={formData.accountType}
+                      onChange={handleChange}
+                    >
+                      <MenuItem value={10}>User</MenuItem>
+                      <MenuItem value={20}>Admin</MenuItem>
+                      <MenuItem value={30}>Seller</MenuItem>
+                    </Select>
+                  </div>
+                  <div className={classes.namesContainer}>
+                    <Input
+                      name="firstName"
+                      label="First Name"
+                      handleChange={handleChange}
+                      autoFocus
+                      half
+                    />
 
-                <Input
-                  name="lastName"
-                  label="Last Name"
-                  handleChange={handleChange}
-                  half
-                />
+                    <Input
+                      name="lastName"
+                      label="Last Name"
+                      handleChange={handleChange}
+                      half
+                    />
+                  </div>
+                </div>
               </>
             )}
             <Input

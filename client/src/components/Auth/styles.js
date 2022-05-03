@@ -38,4 +38,25 @@ export default makeStyles((theme) => ({
     paddingTop: 10,
     justifyContent: "center",
   },
+  tnContainer: {
+    display: "flex",
+    flexDirection: "column",
+    marginLeft: 10,
+    alignItems: "center",
+  },
+  typesContainer: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  namesContainer: {
+    display: "flex",
+    flexDirection: "row",
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  label: {
+    marginRight: 10,
+    fontWeight: "bold",
+  },
 }));

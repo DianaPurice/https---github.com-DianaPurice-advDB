@@ -19,7 +19,7 @@ export const signup = (formData, navigate) => async (dispatch) => {
     // log in the user
     const { data } = await api.signUp(formData);
     dispatch({ type: AUTH, data });
-    navigate.push("/");
+    navigate("/");
   } catch (error) {
     console.log(error);
   }
