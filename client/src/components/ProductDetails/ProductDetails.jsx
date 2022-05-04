@@ -1,4 +1,4 @@
-import SellerView from "../../views/seller";
+import SellerView from "../../views/seller/seller";
 import {useDispatch, useSelector} from 'react-redux'
 import React, {useEffect} from 'react'
 import { getPost, getPostsBySearch} from '../../actions/posts'

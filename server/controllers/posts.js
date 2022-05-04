@@ -28,6 +28,20 @@ export const getPostsBySearch = async (req, res) => {
     res.status(404).json({ message: error });
   }
 };
+export const getPostsByCreator = async (req, res) => {
+  const { creator } = req.query;
+  console.log(creator);
+  try {
+    const title = new RegExp(searchQuery, "i");
+    const category = new RegExp(searchQuery, "i");
+    const posts = await PostMessage.find({
+      $or: [{ title }, { category }, { tags: { $in: tags.split(",") } }],
+    });
+    res.json({ data: posts });
+  } catch (error) {
+    res.status(404).json({ message: error });
+  }
+};
 export const getPosts = async (req, res) => {
   const { page } = req.query;
 
