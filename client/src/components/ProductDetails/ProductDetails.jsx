@@ -1,9 +1,12 @@
 import SellerView from "../../views/seller/seller";
+import AdminView from '../../views/admin/admin'
+import UserView from '../../views/user/user'
+import DefaultView from '../../views/default/default'
 import {useDispatch, useSelector} from 'react-redux'
 import React, {useEffect} from 'react'
 import { getPost, getPostsBySearch} from '../../actions/posts'
 import { useParams, useNavigate } from 'react-router-dom'
-const PostDetails2 = () => {
+const PostDetails = () => {
     const user = JSON.parse(localStorage.getItem("profile"));
     const accountType = user?.result?.accountType;
     const userId = user?.result?._id
@@ -22,17 +25,17 @@ const PostDetails2 = () => {
         )}
     {accountType === 20 &&
         userId === post?.creator && (
-         <SellerView />
+         <AdminView />
         )}
     {accountType === 10 &&
         userId === post?.creator && (
-         <SellerView />
+         <UserView />
         )}
     {!accountType && (
-         <SellerView />
+         <DefaultView />
         )}
         </>
   )
 }
 
-export default PostDetails2
+export default PostDetails

@@ -78,6 +78,8 @@ const Home = () => {
           </Container>
         </Grow>
       );
+      // product
+      // product details recomended posts?
       break;
     case 20:
       return <h1>Nothing to show yet for the admin</h1>;

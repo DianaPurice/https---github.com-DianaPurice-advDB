@@ -52,7 +52,6 @@ const SellerView = () => {
       </Paper>
     );
   }
-  const recommendedPosts = posts.filter(({ _id }) => _id !== post._id);
 
   const openPost = (_id) => navigate(`/posts/${_id}`);
 
@@ -99,73 +98,11 @@ const SellerView = () => {
                 </Typography>
               </div>
               <Divider style={{ margin: "20px 0" }} />
-              <div className={classes.actions}>
-                <Divider style={{ margin: "20px 0" }} />
-                <Button
-                  className={classes.edit}
-                  size="small"
-                  color="primary"
-                  onClick={() => edit(post._id)}
-                  fullWidth
-                >
-                  <EditIcon fontSize="small" />
-                  Edit
-                </Button>
-                <Button
-                  className={classes.delete}
-                  size="small"
-                  color="primary"
-                  onClick={() => dispatch(deletePost(post._id))}
-                  fullWidth
-                >
-                  <DeleteIcon fontSize="small" />
-                  Delete
-                </Button>
-              </div>
-
+              <h2>Login for more options!</h2>
               <Divider style={{ margin: "20px 0" }} />
               <div className={classes.comments}>
                 <CommentSection post={post} />
               </div>
-            </Paper>
-          </Grid>
-          {/* display posts */}
-          <Grid item xs={12} sm={12} md={3}>
-            <Paper className={classes.post} elevation={6}>
-              {/* RECOMENDED POSTS */}
-              {recommendedPosts.length && (
-                <div className={classes.section}>
-                  <Typography gutterBottom variant="h5">
-                    You might also like:
-                  </Typography>
-                  <Divider />
-                  <div className={classes.recommendedPosts}>
-                    {recommendedPosts.map(
-                      ({ title, message, name, likes, selectedFile, _id }) => (
-                        <div
-                          style={{ margin: "20px", cursor: "pointer" }}
-                          onClick={() => openPost(_id)}
-                          key={_id}
-                        >
-                          <Typography gutterBottom variant="h6">
-                            {title}
-                          </Typography>
-                          <Typography gutterBottom variant="subtitle2">
-                            {name}
-                          </Typography>
-                          <Typography gutterBottom variant="subtitle2">
-                            {message}
-                          </Typography>
-                          <Typography gutterBottom variant="subtitle1">
-                            Likes: {likes.length}
-                          </Typography>
-                          <img src={selectedFile} width="200px" />
-                        </div>
-                      )
-                    )}
-                  </div>
-                </div>
-              )}
             </Paper>
           </Grid>
         </Grid>
