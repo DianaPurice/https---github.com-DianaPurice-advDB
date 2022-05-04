@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { useNavigate, useParams } from "react-router-dom";
 import useStyles from "./styles";
-import { createPost, updatePost, editPost } from "../../actions/posts";
+import { createPost, updatePost } from "../../actions/posts";
 
 const AddProductForm = (currentId) => {
   const dispatch = useDispatch();
@@ -26,8 +26,6 @@ const AddProductForm = (currentId) => {
   const post = useSelector((state) =>
     id ? state.posts.posts.find((message) => message._id === id) : null
   );
-  console.log(`post data 1: ${postData}`);
-
   useEffect(() => {
     if (post) setPostData(post);
   }, [post]);
@@ -97,7 +95,6 @@ const AddProductForm = (currentId) => {
           fullWidth
           value={postData.tags}
           onChange={(e) => {
-            console.log(postData.tags);
             setPostData({ ...postData, tags: e.target.value.split(",") });
           }}
           InputLabelProps={{

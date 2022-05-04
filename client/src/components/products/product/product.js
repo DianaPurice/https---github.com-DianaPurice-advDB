@@ -18,7 +18,6 @@ import { useNavigate } from "react-router-dom";
 import moment from "moment";
 
 const Post = ({ post, setCurrentId }) => {
-  console.log(post);
   const classes = useStyles();
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -29,9 +28,6 @@ const Post = ({ post, setCurrentId }) => {
     navigate(path);
   };
   const openPost = (e) => {
-    // dispatch(getPost(post._id, history));
-    console.log(post);
-
     navigate(`/posts/${post._id}`);
   };
   return (
@@ -65,5 +61,3 @@ const Post = ({ post, setCurrentId }) => {
 };
 
 export default Post;
-
-/// error on editing the post

@@ -31,14 +31,10 @@ export default (state = { isLoading: true, posts: [] }, action) => {
         numberOfPages: action.payload.numberOfPages,
       };
     case FETCH_POST:
-      console.log(action.payload);
-      console.log("reducers");
       return { ...state, post: action.payload };
     case FETCH_BY_SEARCH:
       return { ...state, posts: action.payload.data };
     case CREATE:
-      console.log("hereeeeeeeeeee");
-      console.log(action.payload);
       return { ...state.posts, posts: [...state, action.payload] };
     case UPDATE:
       return {

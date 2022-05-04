@@ -6,10 +6,6 @@ import { commentPost } from '../../actions/posts'
 import useStyles from './styles.js'
 
 const CommentSection = ({post}) => {
-    console.log(post);
-    console.log('commentsection.jsx');
-
-
     const classes = useStyles();
     const dispatch = useDispatch();
     const [comments, setComments] = useState(post?.comments);

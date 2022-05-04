@@ -27,6 +27,15 @@ export const signup = (formData, navigate) => async (dispatch) => {
     dispatch({ type: AUTH, data });
     navigate("/");
   } catch (error) {
-    console.log(error);
+    switch (error.response.status) {
+      case 400:
+        window.alert(
+          "Something dosen't seem right!\nPlease check your details and try again!"
+        );
+        break;
+      default:
+        window.alert(error);
+        break;
+    }
   }
 };

@@ -33,8 +33,7 @@ const Home = () => {
   const accountType = user?.result?.accountType;
   const page = query.get("page") || 1;
   const searchQuery = query.get("searchQuery");
-  console.log(currentId);
-  console.log("hereee");
+
   const handleAddChip = (tag) => setTags([...tags, tag]);
   const handleDeleteChip = (tagToDelete) =>
     setTags(tags.filter((tag) => tag !== tagToDelete));
@@ -122,7 +121,7 @@ const Home = () => {
                 <Products setCurrentId={setCurrentId} />
               </Grid>
               <Grid item xs={12} sm={4}>
-                <h2>Log in for more options</h2>
+                <h2>Login for more options</h2>
               </Grid>
             </Grid>
           </Container>

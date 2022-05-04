@@ -13,8 +13,7 @@ const PostDetails2 = () => {
     useEffect(() => {
         dispatch(getPost(id))
       }, [id]);
-      console.log(post);
-      console.log('u r here');
+
   return (
     <>
     {accountType === 30 &&

@@ -39,8 +39,6 @@ export const getPosts = (page) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
     const { data } = await api.fetchPosts(page);
-    console.log(data);
-
     dispatch({ type: FETCH_ALL, payload: data });
     dispatch({ type: END_LOADING });
   } catch (error) {
@@ -56,9 +54,6 @@ export const getPostsBySearch = (searchQuery) => async (dispatch) => {
       data: { data },
     } = await api.fetchPostsBySearch(searchQuery);
     dispatch({ type: FETCH_BY_SEARCH, payload: { data } });
-    console.log(data);
-    console.log(searchQuery);
-    console.log("works in actions/posts");
     dispatch({ type: END_LOADING });
   } catch (error) {
     console.log(error);
@@ -70,8 +65,6 @@ export const createPost = (post, history) => async (dispatch) => {
     dispatch({ type: START_LOADING });
     const { data } = await api.createPost(post);
     window.location.reload();
-    //history.push(`/posts/${data._id}`);
-
     dispatch({ type: CREATE, payload: data });
   } catch (error) {
     console.log(error);
@@ -79,25 +72,10 @@ export const createPost = (post, history) => async (dispatch) => {
 };
 
 export const updatePost = (id, post) => async (dispatch) => {
-  console.log(post);
   try {
-    console.log(post);
-    console.log(post._id);
     const data = await api.updatePost(id, post);
-    console.log(data);
 
     dispatch({ type: UPDATE, payload: data });
-    console.log(`data: ${data}`);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const editPost = (id, post) => async (dispatch) => {
-  try {
-    const data = await api.editPost(id, post);
-    dispatch({ type: UPDATE, payload: data });
-    console.log(data);
   } catch (error) {
     console.log(error);
   }

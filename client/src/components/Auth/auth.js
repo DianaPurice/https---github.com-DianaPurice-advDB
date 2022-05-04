@@ -39,7 +39,6 @@ const Auth = () => {
   // dev defined functions
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
     if (isSignup) {
       dispatch(signup(formData, navigate));
     } else {
@@ -68,11 +67,8 @@ const Auth = () => {
       console.log(error);
     }
   };
-  const googleFailure = (error) => {
-    console.log(error);
-    console.log("Google Sign In was unsuccessfull. Try again later!");
-  };
-  //const googleFailure = () => alert('text')
+  const googleFailure = () =>
+    alert("Google Sign In was unsuccessful. Try again later");
   return (
     <Container component="main" maxWidth="xs" className={classes.container}>
       <Paper className={classes.paper} elevation={3}>

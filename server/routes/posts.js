@@ -9,7 +9,6 @@ import {
   updatePost,
   deletePost,
   likePost,
-  editPost,
 } from "../controllers/posts.js";
 import auth from "../middleware/auth.js";
 //USE .JS IN THE SERVER!!!
@@ -22,7 +21,6 @@ router.get("/:id", getPost);
 
 router.post("/", auth, createPost);
 router.patch("/:id", auth, updatePost);
-router.patch("/:id/edit", auth, editPost);
 
 router.delete("/:id", auth, deletePost);
 router.patch("/:id/likePost", auth, likePost);
