@@ -11,8 +11,7 @@ import Navbar from "./components/Navbar/navbar";
 import SearchBar from "./components/SearchBar/searchBar";
 import Home from "./components/Home/home";
 import Auth from "./components/Auth/auth";
-import PostDetails from "./components/ProductDetails/PorductDetails";
-import ProductDetails2 from "./components/ProductDetails/ProductDetails2";
+import ProductDetails from "./components/ProductDetails/ProductDetails";
 
 import useStyles from "./styles.js";
 
@@ -31,8 +30,7 @@ const App = () => {
           <Route path="/" element={<Navigate to="/posts" />} />
           <Route path="/posts" exact element={<Home />} />
           <Route path="/posts/search" exact element={<Home />} />
-          {/* <Route path="/posts/:id" element={<PostDetails />} /> */}
-          <Route path="/posts/:id" element={<ProductDetails2 />} />
+          <Route path="/posts/:id" element={<ProductDetails />} />
           <Route
             path="/posts/:id/edit"
             element={
