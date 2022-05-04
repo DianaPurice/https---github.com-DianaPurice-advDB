@@ -1,8 +1,10 @@
 import React, {useEffect} from 'react'
-import {Paper, Typography, CircularProgress, Divider, Grow, Grid, Container} from '@material-ui/core'
+import {Button, Paper, Typography, CircularProgress, Divider, Grow, Grid, Container} from '@material-ui/core'
 import {useDispatch, useSelector} from 'react-redux'
 import { useParams, useNavigate } from 'react-router-dom'
-
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
+import { deletePost, updatePost } from "../../actions/posts";
 import { getPost, getPostsBySearch} from '../../actions/posts'
 import CommentSection from './CommentsSections'
 import useStyles from './styles.js'
@@ -13,7 +15,8 @@ const PostDetails = () => {
   const navigate = useNavigate();
   const {id} = useParams();
   const classes = useStyles();
-
+  const user = JSON.parse(localStorage.getItem("profile"));
+  const userId = user?.result?._id;
   useEffect(() => {
     dispatch(getPost(id))
   }, [id]);
@@ -62,6 +65,34 @@ const PostDetails = () => {
                 <Typography gutterBottom variant="h5" component="p">£ {post.price}</Typography>
                 <Typography gutterBottom variant="body1" component="p">{post.description}</Typography>
               </div>
+              <Divider style={{ margin: '20px 0' }} />
+              {(user?.result?.accountType === 30 &&
+                user?.result?._id === post?.creator) && (
+                <div className={classes.actions}>
+                <Divider style={{ margin: '20px 0' }} />
+                <Button
+                  className={classes.edit}
+                  size="small"
+                  color="primary"
+                  onClick={() => dispatch(updatePost(post._id))}
+                  fullWidth
+                >
+                  <EditIcon fontSize="small" />
+                  Edit
+                </Button>
+                <Button
+                  className={classes.delete}
+                  size="small"
+                  color="primary"
+                  onClick={() => dispatch(deletePost(post._id))}
+                  fullWidth
+                >
+                  <DeleteIcon fontSize="small" />
+                  Delete
+                </Button>
+            </div>
+            )}
+              
                 <Divider style={{ margin: '20px 0' }} />
               <div className={classes.comments}>
                 <CommentSection post={post} />

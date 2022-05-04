@@ -25,6 +25,16 @@ export const getPost = (id) => async (dispatch) => {
     console.log(error);
   }
 };
+export const getPostDetails = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: START_LOADING });
+    const { data } = await api.fetchPost(id);
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 export const getPosts = (page) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
@@ -69,9 +79,25 @@ export const createPost = (post, history) => async (dispatch) => {
 };
 
 export const updatePost = (id, post) => async (dispatch) => {
+  console.log(post);
   try {
-    const { data } = await api.updatePost(id, post);
+    console.log(post);
+    console.log(post._id);
+    const data = await api.updatePost(id, post);
+    console.log(data);
+
     dispatch({ type: UPDATE, payload: data });
+    console.log(`data: ${data}`);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const editPost = (id, post) => async (dispatch) => {
+  try {
+    const data = await api.editPost(id, post);
+    dispatch({ type: UPDATE, payload: data });
+    console.log(data);
   } catch (error) {
     console.log(error);
   }

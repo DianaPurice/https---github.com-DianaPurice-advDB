@@ -2,14 +2,16 @@ import React, { useState, useEffect } from "react";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import FileBase from "react-file-base64";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import useStyles from "./styles";
-import { createPost, updatePost } from "../../actions/posts";
 
-const AddProductForm = ({ currentId, setCurrentId }) => {
+import { useNavigate, useParams } from "react-router-dom";
+import useStyles from "./styles";
+import { createPost, updatePost, editPost } from "../../actions/posts";
+
+const AddProductForm = (currentId) => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const navigate = useNavigate();
+  const { id } = useParams();
   const user = JSON.parse(localStorage.getItem("profile"));
   const [postData, setPostData] = useState({
     seller: "",
@@ -22,41 +24,21 @@ const AddProductForm = ({ currentId, setCurrentId }) => {
     price: "",
   });
   const post = useSelector((state) =>
-    currentId
-      ? state.posts.posts.find((message) => message._id === currentId)
-      : null
+    id ? state.posts.posts.find((message) => message._id === id) : null
   );
+  console.log(`post data 1: ${postData}`);
 
   useEffect(() => {
-    setCurrentId(null);
     if (post) setPostData(post);
   }, [post]);
 
-  const clear = () => {
-    setPostData({
-      seller: "",
-      title: "",
-      category: "",
-      description: "",
-      tags: "",
-      selectedFile: "",
-      qty: "",
-      price: "",
-    });
-  };
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (currentId) {
-      dispatch(
-        updatePost(currentId, { ...postData, seller: user?.result?.seller })
-      );
-    } else {
-      dispatch(
-        createPost({ ...postData, seller: user?.result?.name }, navigate)
-      );
-    }
-    clear();
+    dispatch(
+      updatePost(currentId, { ...postData, seller: user?.result?.seller })
+    );
+    window.alert("Post edited successfully!");
+    navigate(`/posts/${postData._id}`);
   };
 
   return (
@@ -68,7 +50,7 @@ const AddProductForm = ({ currentId, setCurrentId }) => {
         onSubmit={handleSubmit}
       >
         <Typography variant="h6" style={{ fontWeight: "bold" }}>
-          Add a product:
+          Edit product: {id}
         </Typography>
 
         <TextField
@@ -114,9 +96,10 @@ const AddProductForm = ({ currentId, setCurrentId }) => {
           label="Tags"
           fullWidth
           value={postData.tags}
-          onChange={(e) =>
-            setPostData({ ...postData, tags: e.target.value.split(",") })
-          }
+          onChange={(e) => {
+            console.log(postData.tags);
+            setPostData({ ...postData, tags: e.target.value.split(",") });
+          }}
           InputLabelProps={{
             className: "inputLabel",
           }}
@@ -160,18 +143,9 @@ const AddProductForm = ({ currentId, setCurrentId }) => {
           type="submit"
           fullWidth
           color="primary"
+          onClick={handleSubmit}
         >
           Submit
-        </Button>
-        <Button
-          className={classes.btnClear}
-          variant="contained"
-          size="small"
-          onClick={clear}
-          fullWidth
-          color="secondary"
-        >
-          Clear Form
         </Button>
       </form>
     </Paper>

@@ -22,6 +22,7 @@ function useQuery() {
 }
 
 const Home = () => {
+  const user = JSON.parse(localStorage.getItem("profile"));
   const classes = useStyles();
   const dispatch = useDispatch();
   const query = useQuery();
@@ -29,7 +30,7 @@ const Home = () => {
   const [currentId, setCurrentId] = useState(null);
   const [search, setSearch] = useState("");
   const [tags, setTags] = useState([]);
-
+  const accountType = user?.result?.accountType;
   const page = query.get("page") || 1;
   const searchQuery = query.get("searchQuery");
   console.log(currentId);
@@ -60,25 +61,75 @@ const Home = () => {
     dispatch(getPosts());
   }, [dispatch]);
 
-  return (
-    <Grow in>
-      <Container style={{ padding: 30 }}>
-        <Grid
-          container
-          justifyContent="space-between"
-          alignItems="stretch"
-          spagcing={3}
-        >
-          <Grid item xs={12} sm={7}>
-            <Products setCurrentId={setCurrentId} />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <AddProductForm currentId={currentId} setCurrentId={setCurrentId} />
-          </Grid>
-        </Grid>
-      </Container>
-    </Grow>
-  );
+  switch (accountType) {
+    case 10:
+      return (
+        <Grow in>
+          <Container style={{ padding: 30 }}>
+            <Grid
+              container
+              justifyContent="space-between"
+              alignItems="stretch"
+              spagcing={3}
+            >
+              <Grid item xs={12} sm={7}>
+                <Products setCurrentId={setCurrentId} />
+              </Grid>
+            </Grid>
+          </Container>
+        </Grow>
+      );
+      break;
+    case 20:
+      return <h1>Nothing to show yet for the admin</h1>;
+      break;
+    case 30:
+      return (
+        <Grow in>
+          <Container style={{ padding: 30 }}>
+            <Grid
+              container
+              justifyContent="space-between"
+              alignItems="stretch"
+              spagcing={3}
+            >
+              <Grid item xs={12} sm={7}>
+                <Products setCurrentId={setCurrentId} />
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <AddProductForm
+                  currentId={currentId}
+                  setCurrentId={setCurrentId}
+                />
+              </Grid>
+            </Grid>
+          </Container>
+        </Grow>
+      );
+      break;
+
+    default:
+      return (
+        <Grow in>
+          <Container style={{ padding: 30 }}>
+            <Grid
+              container
+              justifyContent="space-between"
+              alignItems="stretch"
+              spagcing={3}
+            >
+              <Grid item xs={12} sm={7}>
+                <Products setCurrentId={setCurrentId} />
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <h2>Log in for more options</h2>
+              </Grid>
+            </Grid>
+          </Container>
+        </Grow>
+      );
+      break;
+  }
 };
 
 export default Home;

@@ -38,7 +38,7 @@ const CommentSection = ({post}) => {
                     ))}
                     <div ref={commentsRef}/>
                 </div>
-                {user?.result?.name && (
+                {user?.result?.accountType === 10 && (
                 <div
                 style={{width: '70%'}}
                 >

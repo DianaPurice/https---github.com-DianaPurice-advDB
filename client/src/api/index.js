@@ -22,8 +22,27 @@ export const fetchPostsBySearch = (searchQuery) =>
     }`
   );
 export const createPost = (newPost) => API.post("/posts", newPost);
-export const updatePost = (id, updatedPost) =>
-  API.patch(`/posts/${id}`, updatedPost);
+export const updatePost = (id, updatedPost) => {
+  try {
+    API.patch(`/posts/${id}`, updatedPost);
+    console.log(updatedPost);
+    console.log("api index 29");
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const editPost = (id, editedPost) => {
+  try {
+    console.log("stupid");
+    console.log(typeof editedPost);
+    console.log(typeof editedPost._id);
+
+    API.patch(`/posts/${id}/edit`, editedPost);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 export const deletePost = (id) => API.delete(`/posts/${id}`);
 export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
 

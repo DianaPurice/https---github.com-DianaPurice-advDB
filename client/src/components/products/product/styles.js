@@ -42,7 +42,8 @@ export default makeStyles({
     margin: "20px",
   },
   title: {
-    padding: "0 16px",
+    paddingTop: 5,
+    paddingLeft: 5,
   },
   cardActions: {
     padding: "0 16px 8px 16px",
@@ -52,5 +53,23 @@ export default makeStyles({
   cardAction: {
     display: "block",
     textAlign: "initial",
+  },
+  category: {
+    paddingLeft: 10,
+  },
+  description: {
+    paddingLeft: 10,
+  },
+  delete: {
+    background: "red",
+    fontWeight: "bolder",
+    color: "black",
+    fontSize: "10px",
+  },
+  edit: {
+    background: "orange",
+    fontWeight: "bolder",
+    color: "black",
+    fontSize: "10px",
   },
 });

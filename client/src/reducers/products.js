@@ -41,6 +41,11 @@ export default (state = { isLoading: true, posts: [] }, action) => {
       console.log(action.payload);
       return { ...state.posts, posts: [...state, action.payload] };
     case UPDATE:
+      return {
+        ...state,
+        post: (post) =>
+          post._id === action.payload._id ? action.payload : post,
+      };
     case LIKE:
       return {
         ...state,
