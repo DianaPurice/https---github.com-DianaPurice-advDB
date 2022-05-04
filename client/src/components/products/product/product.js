@@ -50,6 +50,11 @@ const Post = ({ post, setCurrentId }) => {
             {post.category}
           </Typography>
         </div>
+        <div className={classes.category}>
+          <Typography variant="body2" color="textSecondary">
+            £ {post.price}
+          </Typography>
+        </div>
         <CardContent className={classes.description}>
           <Typography variant="body2" color="textSecondary" component="p">
             {post.description}

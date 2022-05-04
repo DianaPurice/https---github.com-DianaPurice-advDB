@@ -16,7 +16,6 @@ import Products from "../products/products";
 import AddProductForm from "../addProduct/addProduct";
 import Pagination from "../Pagination";
 import useStyles from "./styles";
-import SellerView from "../../views/seller/seller";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -84,7 +83,28 @@ const Home = () => {
       return <h1>Nothing to show yet for the admin</h1>;
       break;
     case 30:
-      <SellerView />;
+      return (
+        <Grow in>
+          <Container style={{ padding: 30 }}>
+            <Grid
+              container
+              justifyContent="space-between"
+              alignItems="stretch"
+              spagcing={3}
+            >
+              <Grid item xs={12} sm={7}>
+                <Products setCurrentId={setCurrentId} />
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <AddProductForm
+                  currentId={currentId}
+                  setCurrentId={setCurrentId}
+                />
+              </Grid>
+            </Grid>
+          </Container>
+        </Grow>
+      );
       break;
 
     default:
