@@ -103,16 +103,29 @@ const UserView = () => {
               <Divider style={{ margin: "20px 0" }} />
               <div className={classes.actions}>
                 <Divider style={{ margin: "20px 0" }} />
-                <Button
-                  className={classes.add}
-                  size="small"
-                  color="primary"
-                  onClick={() => dispatch(addItem(post._id))}
-                  fullWidth
-                >
-                  <ShoppingBasket fontSize="small" />
-                  Add to basket
-                </Button>
+                {post.qty >= 1 ? (
+                  <Button
+                    className={classes.add}
+                    size="small"
+                    color="primary"
+                    onClick={() => {
+                      dispatch(addItem(post._id));
+                      window.alert("Item added to basket!");
+                    }}
+                    fullWidth
+                  >
+                    <ShoppingBasket fontSize="small" />
+                    Add to basket
+                  </Button>
+                ) : (
+                  <Button
+                    className={classes.unavailable}
+                    size="small"
+                    fullWidth
+                  >
+                    <h2 style={{ margin: 0 }}>Product Unavailable!</h2>
+                  </Button>
+                )}
               </div>
 
               <Divider style={{ margin: "20px 0" }} />

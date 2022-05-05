@@ -80,5 +80,16 @@ export default makeStyles((theme) => ({
   actions: {
     display: "flex",
     flexDirection: "row",
+    justifyContent: "center",
+  },
+  unavailable: {
+    padding: 0,
+    height: 40,
+    background: "grey",
+    fontWeight: "bold",
+    "&:hover": {
+      background: "grey",
+      cursor: "auto",
+    },
   },
 }));

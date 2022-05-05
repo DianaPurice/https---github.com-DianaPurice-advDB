@@ -116,14 +116,20 @@ export const addItem = async (req, res) => {
     return res.status(404).send("No post with that id");
 
   const post = await PostMessage.findById(id);
-  const updatedPost = await PostMessage.findByIdAndUpdate(
-    id,
-    { qty: post.qty - 1 },
-    {
-      new: true,
-    }
-  );
-  res.json(updatedPost);
+  const qty = post.qty;
+  console.log(qty);
+  if (qty >= 1) {
+    const updatedPost = await PostMessage.findByIdAndUpdate(
+      id,
+      { qty: post.qty - 1 },
+      {
+        new: true,
+      }
+    );
+    res.json(updatedPost);
+  } else {
+    res.json("Unavailable!");
+  }
 };
 
 export const commentPost = async (req, res) => {
