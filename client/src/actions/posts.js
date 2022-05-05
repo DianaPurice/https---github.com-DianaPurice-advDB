@@ -9,8 +9,10 @@ import {
   UPDATE,
   DELETE,
   LIKE,
+  ADD,
 } from "../constants/actionTypes";
 import * as api from "../api";
+import { Add } from "@material-ui/icons";
 //import * as api from "../api/index.js";
 
 // action creators
@@ -94,6 +96,15 @@ export const likePost = (id) => async (dispatch) => {
   try {
     const { data } = await api.likePost(id);
     dispatch({ type: LIKE, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const addItem = (id) => async (dispatch) => {
+  try {
+    const { data } = await api.addItem(id);
+    dispatch({ type: ADD, payload: data });
   } catch (error) {
     console.log(error);
   }

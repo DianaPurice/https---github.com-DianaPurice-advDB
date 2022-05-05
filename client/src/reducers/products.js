@@ -9,6 +9,7 @@ import {
   UPDATE,
   DELETE,
   LIKE,
+  ADD,
 } from "../constants/actionTypes";
 
 export default (state = { isLoading: true, posts: [] }, action) => {
@@ -43,6 +44,13 @@ export default (state = { isLoading: true, posts: [] }, action) => {
           post._id === action.payload._id ? action.payload : post,
       };
     case LIKE:
+      return {
+        ...state,
+        posts: state.posts.map((post) =>
+          post._id === action.payload._id ? action.payload : post
+        ),
+      };
+    case ADD:
       return {
         ...state,
         posts: state.posts.map((post) =>

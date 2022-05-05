@@ -70,10 +70,12 @@ export default makeStyles((theme) => ({
     margin: 5,
     fontSize: "10px",
   },
-  delete: {
-    background: "red",
+  add: {
+    background: "lightgreen",
     margin: 5,
     fontSize: "10px",
+    color: "black",
+    fontWeight: "bold",
   },
   actions: {
     display: "flex",

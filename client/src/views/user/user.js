@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
+import ShoppingBasket from "@material-ui/icons/ShoppingBasket";
 import {
   getPost,
   getPostsBySearch,
@@ -22,6 +23,7 @@ import {
 import CommentSection from "../../components/ProductDetails/CommentsSections";
 import useStyles from "./styles.js";
 import AddProductForm from "../../components/addProduct/addProduct";
+import { addItem } from "../../actions/posts";
 
 const UserView = () => {
   const { post, posts, isLoading } = useSelector((state) => state.posts);
@@ -102,24 +104,14 @@ const UserView = () => {
               <div className={classes.actions}>
                 <Divider style={{ margin: "20px 0" }} />
                 <Button
-                  className={classes.edit}
+                  className={classes.add}
                   size="small"
                   color="primary"
-                  onClick={() => edit(post._id)}
+                  onClick={() => dispatch(addItem(post._id))}
                   fullWidth
                 >
-                  <EditIcon fontSize="small" />
-                  Edit
-                </Button>
-                <Button
-                  className={classes.delete}
-                  size="small"
-                  color="primary"
-                  onClick={() => dispatch(deletePost(post._id))}
-                  fullWidth
-                >
-                  <DeleteIcon fontSize="small" />
-                  Delete
+                  <ShoppingBasket fontSize="small" />
+                  Add to basket
                 </Button>
               </div>
 

@@ -18,7 +18,11 @@ const postSchema = mongoose.Schema({
     type: Date,
     default: new Date(),
   },
-  likes: {
+  addQty: {
+    type: [String],
+    default: [],
+  },
+  comments: {
     type: [String],
     default: [],
   },
