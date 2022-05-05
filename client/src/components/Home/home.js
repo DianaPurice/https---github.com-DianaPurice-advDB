@@ -78,11 +78,31 @@ const Home = () => {
           </Container>
         </Grow>
       );
-      // product
-      // product details recomended posts?
       break;
     case 20:
-      return <h1>Nothing to show yet for the admin</h1>;
+      //return <h1>Nothing to show yet for the admin</h1>;
+      return (
+        <Grow in>
+          <Container style={{ padding: 30 }}>
+            <Grid
+              container
+              justifyContent="space-between"
+              alignItems="stretch"
+              spagcing={3}
+            >
+              <Grid item xs={12} sm={7}>
+                <Products setCurrentId={setCurrentId} />
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <AddProductForm
+                  currentId={currentId}
+                  setCurrentId={setCurrentId}
+                />
+              </Grid>
+            </Grid>
+          </Container>
+        </Grow>
+      );
       break;
     case 30:
       return (

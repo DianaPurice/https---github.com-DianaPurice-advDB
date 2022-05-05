@@ -17,18 +17,17 @@ const PostDetails = () => {
         dispatch(getPost(id))
       }, [id]);
 
+
   return (
     <>
     {accountType === 30 &&
         userId === post?.creator && (
          <SellerView />
         )}
-    {accountType === 20 &&
-        userId === post?.creator && (
+    {!accountType  === 20 && (
          <AdminView />
         )}
-    {accountType === 10 &&
-        userId === post?.creator && (
+    {accountType === 10 && (
          <UserView />
         )}
     {!accountType && (

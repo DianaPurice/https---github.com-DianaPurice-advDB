@@ -23,7 +23,7 @@ import CommentSection from "../../components/ProductDetails/CommentsSections";
 import useStyles from "./styles.js";
 import AddProductForm from "../../components/addProduct/addProduct";
 
-const SellerView = () => {
+const AdminView = () => {
   const { post, posts, isLoading } = useSelector((state) => state.posts);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -174,4 +174,4 @@ const SellerView = () => {
   );
 };
 
-export default SellerView;
+export default AdminView;
