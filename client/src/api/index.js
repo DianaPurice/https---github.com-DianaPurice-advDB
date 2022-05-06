@@ -29,9 +29,23 @@ export const updatePost = (id, updatedPost) => {
     console.log(error);
   }
 };
-
 export const deletePost = (id) => API.delete(`/posts/${id}`);
 export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
 export const addItem = (id) => API.patch(`/posts/${id}/add`);
+
 export const signIn = (FormData) => API.post("/user/signin", FormData);
 export const signUp = (FormData) => API.post("/user/signup", FormData);
+
+export const getUser = (id) => API.get(`/users/${id}`);
+export const getUsers = () => API.get(`/users`);
+export const getUsersBySearch = (searchQuery) =>
+  API.get(`/users/search?searchQuery=${searchQuery.search || "none"}`);
+export const createUser = (newUser) => API.post("/users", newUser);
+export const updateUser = (id, updatedUser) => {
+  try {
+    API.patch(`/users/${id}`, updateUser);
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const deleteUser = (id) => API.delete(`/users/${id}`);

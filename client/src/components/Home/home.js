@@ -1,20 +1,11 @@
 import React, { useState, useEffect } from "react";
-import {
-  Container,
-  Grow,
-  Grid,
-  Paper,
-  AppBar,
-  TextField,
-  Button,
-} from "@material-ui/core";
+import { Container, Grow, Grid } from "@material-ui/core";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { getPosts, getPostsBySearch } from "../../actions/posts";
 import Products from "../products/products";
 import AddProductForm from "../addProduct/addProduct";
-import Pagination from "../Pagination";
 import useStyles from "./styles";
 
 function useQuery() {
