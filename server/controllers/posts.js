@@ -30,7 +30,6 @@ export const getPostsBySearch = async (req, res) => {
 };
 export const getPostsByCreator = async (req, res) => {
   const { creator } = req.query;
-  console.log(creator);
   try {
     const title = new RegExp(searchQuery, "i");
     const category = new RegExp(searchQuery, "i");
@@ -117,7 +116,6 @@ export const addItem = async (req, res) => {
 
   const post = await PostMessage.findById(id);
   const qty = post.qty;
-  console.log(qty);
   if (qty >= 1) {
     const updatedPost = await PostMessage.findByIdAndUpdate(
       id,

@@ -10,7 +10,6 @@ import {
 export default (users = [], action) => {
   switch (action.type) {
     case FETCH_USERS:
-      console.log(action);
       return action.payload;
     case FETCH_USER:
       return action.payload;

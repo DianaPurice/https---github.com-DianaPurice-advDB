@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import express from "express";
-import Users from "../models/user.js";
+import Users from "../models/users.js";
 import PostMessage from "../models/postProducts.js";
 
 const router = express.Router();
@@ -30,7 +30,6 @@ export const getUsersBySearch = async (req, res) => {
 export const getUsers = async (req, res) => {
   try {
     const users = await Users.find();
-    console.log(users);
     res.status(200).json({ data: users });
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -38,7 +37,12 @@ export const getUsers = async (req, res) => {
 };
 export const createUser = async (req, res) => {
   const user = req.body;
-  const newUser = new Users({ ...user });
+  console.log(user);
+  const newUser = new Users({
+    ...user,
+    userName: user.firstName + user.lastName,
+  });
+  console.log(newUser);
   try {
     await newUser.save();
 

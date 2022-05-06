@@ -9,3 +9,10 @@ body {
     font-size: 10px !important;
     font-weight: bold !important;
 }
+
+[itemprop="ten"] {background: rgb(102, 165, 102) !important;}
+[itemprop="twenty"] {background: rgb(107, 107, 143) !important;}
+[itemprop="thirty"] {background: rgb(171, 228, 86) !important;}
+[itemprop="null"] {background: grey !important;}
+
+

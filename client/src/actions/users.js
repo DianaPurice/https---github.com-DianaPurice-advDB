@@ -7,7 +7,7 @@ import {
   UPDATE_USER,
   DELETE_USER,
 } from "../constants/actionTypes";
-
+// new
 export const getUser = (id) => async (dispatch) => {
   try {
     const { data } = await api.getUser(id);
@@ -20,7 +20,6 @@ export const getUsers = () => async (dispatch) => {
   try {
     const { data } = await api.getUsers();
     dispatch({ type: FETCH_USERS, payload: data });
-    console.log(data);
   } catch (error) {
     console.log(error);
   }
@@ -36,6 +35,7 @@ export const getUsersBySearch = (searchQuery) => async (dispatch) => {
   }
 };
 export const createUser = (user) => async (dispatch) => {
+  console.log(user);
   try {
     const { data } = await api.createUser(user);
     window.location.reload();

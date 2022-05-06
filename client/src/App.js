@@ -33,17 +33,11 @@ const App = () => {
       <Container className={classes.container} maxWidth="xl" padding="0">
         <Navbar />
         <SearchBar />
-        <Users />
-        <AddUser />
         <Routes>
-          {user?.result?.accountType === 20 && (
-            <Route path="/" element={<Navigate to="/users" />} />
-          )}
           <Route path="/" element={<Navigate to="/posts" />} />
           <Route path="/posts" exact element={<Home />} />
           <Route path="/posts/search" exact element={<Home />} />
           <Route path="/posts/:id" element={<ProductDetails />} />
-          <Route path="/users" element={<Home />} />
           <Route
             path="/posts/:id/edit"
             element={

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Container, Grow, Grid } from "@material-ui/core";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Navigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { getPosts, getPostsBySearch } from "../../actions/posts";
 import Products from "../products/products";
 import AddProductForm from "../addProduct/addProduct";
 import useStyles from "./styles";
+import Users from "../users/users";
+import AddUser from "../addUser/addUser";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -17,7 +19,7 @@ const Home = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const query = useQuery();
-  const history = useNavigate();
+  const navigate = useNavigate();
   const [currentId, setCurrentId] = useState(null);
   const [search, setSearch] = useState("");
   const [tags, setTags] = useState([]);
@@ -32,11 +34,11 @@ const Home = () => {
   const searchPost = () => {
     if (search.trim() || tags) {
       dispatch(getPostsBySearch({ search, tags: tags.join(",") }));
-      history.push(
+      navigate(
         `/posts/search?searchQuery=${search || "none"}&tags=${tags.join(",")}`
       );
     } else {
-      history.push("/");
+      navigate("/");
     }
   };
 
@@ -69,9 +71,7 @@ const Home = () => {
           </Container>
         </Grow>
       );
-      break;
     case 20:
-      //return <h1>Nothing to show yet for the admin</h1>;
       return (
         <Grow in>
           <Container style={{ padding: 30 }}>
@@ -81,20 +81,16 @@ const Home = () => {
               alignItems="stretch"
               spagcing={3}
             >
-              <Grid item xs={12} sm={7}>
-                <Products setCurrentId={setCurrentId} />
+              <Grid item xs={12} sm={6}>
+                <Users setCurrentId={setCurrentId} />
               </Grid>
-              <Grid item xs={12} sm={4}>
-                <AddProductForm
-                  currentId={currentId}
-                  setCurrentId={setCurrentId}
-                />
+              <Grid item xs={12} sm={6}>
+                <AddUser currentId={currentId} setCurrentId={setCurrentId} />
               </Grid>
             </Grid>
           </Container>
         </Grow>
       );
-      break;
     case 30:
       return (
         <Grow in>
