@@ -18,6 +18,6 @@ router.get("/:id", getUser);
 router.post("/", auth, createUser);
 router.patch("/:id", auth, updateUser);
 
-router.delete("/:id", auth, deleteUser);
+router.delete("/delete/:id", auth, deleteUser);
 
 export default router;

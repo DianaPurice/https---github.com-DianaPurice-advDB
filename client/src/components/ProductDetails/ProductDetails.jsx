@@ -24,7 +24,7 @@ const PostDetails = () => {
         userId === post?.creator && (
          <SellerView />
         )}
-    {!accountType  === 20 && (
+    {accountType  === 20 && (
          <AdminView />
         )}
     {accountType === 10 && (

@@ -15,8 +15,11 @@ import Auth from "./components/Auth/auth";
 import Users from "./components/users/users";
 import AddUser from "./components/addUser/addUser";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
+import UserDetails from "./components/UserDetails/userDetails";
 import { getUsers } from "./actions/users"; // new
 import useStyles from "./styles.js";
+import DeleteUser from "./components/deleteUser/deleteUser";
+import EditUser from "./components/editUser/editUser";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -36,8 +39,10 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Navigate to="/posts" />} />
           <Route path="/posts" exact element={<Home />} />
+          <Route path="/users" exact element={<Home />} />
           <Route path="/posts/search" exact element={<Home />} />
           <Route path="/posts/:id" element={<ProductDetails />} />
+          <Route path="/users/:id" element={<UserDetails />} />
           <Route
             path="/posts/:id/edit"
             element={
@@ -45,6 +50,18 @@ const App = () => {
                 currentId={currentId}
                 setCurrentId={setCurrentId}
               />
+            }
+          />
+          <Route
+            path="/users/:id/edit"
+            element={
+              <EditUser currentId={currentId} setCurrentId={setCurrentId} />
+            }
+          />
+          <Route
+            path="/users/delete/:id"
+            element={
+              <DeleteUser currentId={currentId} setCurrentId={setCurrentId} />
             }
           />
           <Route

@@ -22,7 +22,9 @@ export default (users = [], action) => {
         user._id === action.payload._id ? action.payload : user
       );
     case DELETE_USER:
-      return users.filter((user) => user._id !== action.payload);
+      console.log(users.data);
+      console.log(action.payload);
+      return users.data.filter((user) => user._id !== action.payload);
     default:
       return users;
   }

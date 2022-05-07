@@ -43,9 +43,9 @@ export const getUsersBySearch = (searchQuery) =>
 export const createUser = (newUser) => API.post("/users", newUser);
 export const updateUser = (id, updatedUser) => {
   try {
-    API.patch(`/users/${id}`, updateUser);
+    API.patch(`/users/${id}`, updatedUser);
   } catch (error) {
     console.log(error);
   }
 };
-export const deleteUser = (id) => API.delete(`/users/${id}`);
+export const deleteUser = (id) => API.delete(`/users/delete/${id}`);

@@ -15,7 +15,7 @@ export const getUser = async (req, res) => {
   }
 };
 export const getUsersBySearch = async (req, res) => {
-  const { searchQuery } = req.searchQuery;
+  const searchQuery = req.searchQuery;
   try {
     const id = new RegExp(searchQuery, "i");
     const accountType = new RegExp(searchQuery, "i");
@@ -37,12 +37,14 @@ export const getUsers = async (req, res) => {
 };
 export const createUser = async (req, res) => {
   const user = req.body;
+  const hashedPassword = await bcrypt.hash(user.password, 12);
   console.log(user);
   const newUser = new Users({
     ...user,
     userName: user.firstName + user.lastName,
+    userPassword: hashedPassword,
   });
-  console.log(newUser);
+
   try {
     await newUser.save();
 
@@ -65,6 +67,7 @@ export const updateUser = async (req, res) => {
 };
 export const deleteUser = async (req, res) => {
   const { id } = req.params;
+  console.log(id);
   if (!mongoose.Types.ObjectId.isValid(id))
     return res.status(404).send("No user with that id");
 

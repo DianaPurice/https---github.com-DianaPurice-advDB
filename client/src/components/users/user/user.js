@@ -27,7 +27,7 @@ const User = ({ user, setCurrentId }) => {
     }
   };
   const classAdd = addClass(user.accountType);
-  console.log(classAdd);
+  console.log(user);
   return (
     <Card
       itemProp={classAdd}
@@ -41,7 +41,7 @@ const User = ({ user, setCurrentId }) => {
             Account type:
           </Typography>
           <Typography className={classes.value} variant="h5" gutterBottom>
-            {user.accountType}
+            {user.accountType || user.userAccountType}
           </Typography>
         </div>
         <div className={classes.section}>
@@ -49,7 +49,7 @@ const User = ({ user, setCurrentId }) => {
             Name:
           </Typography>
           <Typography className={classes.value} variant="h5" gutterBottom>
-            {user.name}
+            {user.name || user.userName}
           </Typography>
         </div>
         <div className={classes.section}>
@@ -57,7 +57,7 @@ const User = ({ user, setCurrentId }) => {
             Email:
           </Typography>
           <Typography className={classes.value} variant="h5" gutterBottom>
-            {user.email}
+            {user.email || user.userEmail}
           </Typography>
         </div>
         <div className={classes.section} style={{ paddingBottom: 5 }}>

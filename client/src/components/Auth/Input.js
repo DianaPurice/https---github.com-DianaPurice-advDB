@@ -24,7 +24,7 @@ const Input = ({
       autoFocus={autoFocus}
       type={type}
       InputProps={
-        name === "password"
+        name === "password" || name === "userPassword"
           ? {
               endAdornment: (
                 <InputAdornment position="end">

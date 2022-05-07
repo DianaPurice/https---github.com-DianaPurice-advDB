@@ -17,7 +17,7 @@ const Users = ({ setCurrentId }) => {
       spacing={3}
     >
       {users?.data?.map((user) => (
-        <Grid key={user._id} item xs={12} sm={12} md={6} lg={3}>
+        <Grid key={user._id} item xs={12} sm={12} md={6} lg={6}>
           <User user={user} setCurrentId={setCurrentId} />
         </Grid>
       ))}

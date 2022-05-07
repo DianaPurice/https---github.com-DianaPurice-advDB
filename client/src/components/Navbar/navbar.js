@@ -32,6 +32,9 @@ const Navbar = () => {
     }
     setUser(JSON.parse(localStorage.getItem("profile")));
   }, [location]);
+  const home = (e) => {
+    navigate("/posts");
+  };
 
   return (
     <AppBar className={classes.appBar} position="static">
@@ -39,8 +42,9 @@ const Navbar = () => {
         <Typography
           className={classes.brand}
           component={Link}
-          to="/"
+          to="/users"
           variant="h2"
+          onClick={home}
         >
           MyApp
         </Typography>

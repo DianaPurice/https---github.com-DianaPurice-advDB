@@ -21,7 +21,6 @@ import {
 } from "../../actions/posts";
 import CommentSection from "../../components/ProductDetails/CommentsSections";
 import useStyles from "./styles.js";
-import AddProductForm from "../../components/addProduct/addProduct";
 
 const SellerView = () => {
   const { post, posts, isLoading } = useSelector((state) => state.posts);

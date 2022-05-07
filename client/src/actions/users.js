@@ -54,8 +54,9 @@ export const updateUser = (id, user) => async (dispatch) => {
 };
 export const deleteUser = (id) => async (dispatch) => {
   try {
-    await api.deleteUser;
+    await api.deleteUser(id);
     dispatch({ type: DELETE_USER, payload: id });
+    window.alert("worket");
   } catch (error) {
     console.log(error);
   }
