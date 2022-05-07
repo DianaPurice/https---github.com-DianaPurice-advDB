@@ -9,6 +9,7 @@ import AddProductForm from "../addProduct/addProduct";
 import useStyles from "./styles";
 import Users from "../users/users";
 import AddUser from "../addUser/addUser";
+import { getUsers } from "../../actions/users";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);

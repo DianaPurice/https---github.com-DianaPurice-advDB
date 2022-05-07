@@ -56,11 +56,11 @@ export const createUser = async (req, res) => {
 export const updateUser = async (req, res) => {
   const user = req.body;
   const id = user._id;
-  const hashedPassword = await bcrypt.hash(user.password, 12);
+  const password = user.password;
+  const hashedPassword = await bcrypt.hash(password, 12);
   console.log(user);
   const newUser = new Users({
     ...user,
-    name: `${user.firstName} ${user.lastName}`,
     password: hashedPassword,
   });
 
@@ -68,7 +68,7 @@ export const updateUser = async (req, res) => {
     return res.status(404).send("No user with that id");
   const updatedUser = await Users.findByIdAndUpdate(
     id,
-    { ...user, id },
+    { ...newUser, id },
     { new: true }
   );
   res.json(updatedUser);

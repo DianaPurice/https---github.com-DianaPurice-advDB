@@ -48,7 +48,6 @@ export const updateUser = (id, user) => async (dispatch) => {
   console.log(user);
   try {
     const data = await api.updateUser(id, user);
-    console.log(data);
     dispatch({ type: UPDATE_USER, payload: user });
   } catch (error) {
     console.log(error);
