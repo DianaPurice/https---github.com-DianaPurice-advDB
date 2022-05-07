@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import bcrypt from "bcryptjs";
 import express from "express";
 import Users from "../models/users.js";
 import PostMessage from "../models/postProducts.js";
@@ -55,7 +56,13 @@ export const createUser = async (req, res) => {
 export const updateUser = async (req, res) => {
   const user = req.body;
   const id = user._id;
-  //console.log(id);
+  const hashedPassword = await bcrypt.hash(user.password, 12);
+  console.log(user);
+  const newUser = new Users({
+    ...user,
+    name: `${user.firstName} ${user.lastName}`,
+    password: hashedPassword,
+  });
 
   if (!mongoose.Types.ObjectId.isValid(id))
     return res.status(404).send("No user with that id");
