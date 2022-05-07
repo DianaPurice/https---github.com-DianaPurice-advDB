@@ -13,15 +13,14 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useStyles from "./styles";
 import Input from "../Auth/Input";
-import { signup } from "../../actions/auth";
 import { createUser } from "../../actions/users";
 
 const initialState = {
-  userAccountType: "",
+  accountType: "",
   firstName: "",
   lastName: "",
-  userEmail: "",
-  userPassword: "",
+  email: "",
+  password: "",
   confirmPassword: "",
 };
 
@@ -60,9 +59,9 @@ const Auth = () => {
                 </InputLabel>
                 <Select
                   labelId="types"
-                  id="userAccountType"
-                  name="userAccountType"
-                  value={formData.userAccountType}
+                  id="accountType"
+                  name="accountType"
+                  value={formData.accountType}
                   onChange={handleChange}
                   autoFocus
                   defaultValue={10}
@@ -89,13 +88,13 @@ const Auth = () => {
               </div>
             </div>
             <Input
-              name="userEmail"
+              name="email"
               label="Email Address"
               handleChange={handleChange}
               type="email"
             />
             <Input
-              name="userPassword"
+              name="password"
               label="Password"
               handleChange={handleChange}
               type={showPassword ? "text" : "password"}

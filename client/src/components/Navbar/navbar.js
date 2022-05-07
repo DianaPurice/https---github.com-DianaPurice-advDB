@@ -60,7 +60,7 @@ const Navbar = () => {
             >
               {user.result.name.charAt(0)}
             </Avatar>
-            <Typography className={classes.userName} varient="h6">
+            <Typography className={classes.name} varient="h6">
               {user.result.name}
             </Typography>
             <Typography className={classes.userType} varient="h6">

@@ -18,14 +18,11 @@ export default (users = [], action) => {
     case CREATE_USER:
       return [...users, action.payload];
     case UPDATE_USER:
-      return users.map((user) =>
-        user._id === action.payload._id ? action.payload : user
-      );
+      return action.payload;
     case DELETE_USER:
-      console.log(users.data);
-      console.log(action.payload);
       return users.data.filter((user) => user._id !== action.payload);
     default:
+      console.log(users);
       return users;
   }
 };

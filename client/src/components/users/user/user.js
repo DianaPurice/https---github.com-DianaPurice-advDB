@@ -41,7 +41,7 @@ const User = ({ user, setCurrentId }) => {
             Account type:
           </Typography>
           <Typography className={classes.value} variant="h5" gutterBottom>
-            {user.accountType || user.userAccountType}
+            {user.accountType || user.accountType}
           </Typography>
         </div>
         <div className={classes.section}>
@@ -49,7 +49,7 @@ const User = ({ user, setCurrentId }) => {
             Name:
           </Typography>
           <Typography className={classes.value} variant="h5" gutterBottom>
-            {user.name || user.userName}
+            {user.name || user.name}
           </Typography>
         </div>
         <div className={classes.section}>
@@ -57,7 +57,7 @@ const User = ({ user, setCurrentId }) => {
             Email:
           </Typography>
           <Typography className={classes.value} variant="h5" gutterBottom>
-            {user.email || user.userEmail}
+            {user.email || user.email}
           </Typography>
         </div>
         <div className={classes.section} style={{ paddingBottom: 5 }}>

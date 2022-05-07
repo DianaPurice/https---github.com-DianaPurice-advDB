@@ -38,11 +38,10 @@ export const getUsers = async (req, res) => {
 export const createUser = async (req, res) => {
   const user = req.body;
   const hashedPassword = await bcrypt.hash(user.password, 12);
-  console.log(user);
   const newUser = new Users({
     ...user,
-    userName: user.firstName + user.lastName,
-    userPassword: hashedPassword,
+    name: `${user.firstName} ${user.lastName}`,
+    password: hashedPassword,
   });
 
   try {
@@ -56,6 +55,8 @@ export const createUser = async (req, res) => {
 export const updateUser = async (req, res) => {
   const user = req.body;
   const id = user._id;
+  //console.log(id);
+
   if (!mongoose.Types.ObjectId.isValid(id))
     return res.status(404).send("No user with that id");
   const updatedUser = await Users.findByIdAndUpdate(
@@ -67,7 +68,6 @@ export const updateUser = async (req, res) => {
 };
 export const deleteUser = async (req, res) => {
   const { id } = req.params;
-  console.log(id);
   if (!mongoose.Types.ObjectId.isValid(id))
     return res.status(404).send("No user with that id");
 

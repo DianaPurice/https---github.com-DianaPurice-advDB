@@ -54,20 +54,20 @@ const AdminView = () => {
           <Grid item xs={12} sm={12} md={9}>
             <Paper className={classes.post} elevation={6}>
               <Typography variant="h3" component="h2">
-                Name: {user.name ? user.name : user.userName}
+                Name: {user.name ? user.name : user.name}
               </Typography>
               <Divider style={{ margin: "20px 0" }} />
               <Typography variant="h5">
-                Email: {user.name ? user.email : user.userEmail}
+                Email: {user.name ? user.email : user.email}
               </Typography>
               <Divider style={{ margin: "20px 0" }} />
               <Typography gutterBottom variant="h5" component="p">
-                Password: {user.name ? user.password : user.userPassword}
+                Password: {user.name ? user.password : user.password}
               </Typography>
               <Divider style={{ margin: "20px 0" }} />
               <Typography gutterBottom variant="h5" component="p">
                 Account type:
-                {user.name ? user.accountType : user.userAccountType}
+                {user.name ? user.accountType : user.accountType}
               </Typography>
               <Divider style={{ margin: "20px 0" }} />
               <Typography gutterBottom variant="h5" component="p">

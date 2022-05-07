@@ -39,15 +39,17 @@ export const createUser = (user) => async (dispatch) => {
   try {
     const { data } = await api.createUser(user);
     window.location.reload();
-    dispatch({ type: CREATE_USER, payload: data });
+    dispatch({ type: CREATE_USER, payload: { data } });
   } catch (error) {
     console.log(error);
   }
 };
 export const updateUser = (id, user) => async (dispatch) => {
+  console.log(user);
   try {
-    const data = await api.updatePost(id, user);
-    dispatch({ type: UPDATE_USER, payload: data });
+    const data = await api.updateUser(id, user);
+    console.log(data);
+    dispatch({ type: UPDATE_USER, payload: user });
   } catch (error) {
     console.log(error);
   }
@@ -58,7 +60,7 @@ export const deleteUser = (id) => async (dispatch) => {
     dispatch({ type: DELETE_USER, payload: id });
     window.alert("worket");
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
   }
 };
 

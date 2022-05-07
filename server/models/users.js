@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 
 const usersSchema = mongoose.Schema({
-  userName: { type: String, requires: true },
-  userEmail: { type: String, requires: true },
-  userPassword: { type: String, requires: true },
+  name: { type: String, requires: true },
+  email: { type: String, requires: true },
+  password: { type: String, requires: true },
   userId: { type: String },
-  userAccountType: { type: Number, requires: true },
+  accountType: { type: Number, requires: true },
   userPosts: {
     type: Object,
     default: 0,

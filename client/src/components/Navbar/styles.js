@@ -53,7 +53,7 @@ export default makeStyles((theme) => ({
     width: 25,
     height: 25,
   },
-  userName: {
+  name: {
     fontSize: "medium",
   },
   logout: {
